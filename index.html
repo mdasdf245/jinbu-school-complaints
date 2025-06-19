@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <script>
+        // 간단한 비속어 리스트
+        const badWords = ["욕", "사발", "tlqkf", "엄마", "장애", "ㅈㄴ", "존나", "ㅈ같은","ㅈ같네", "시발", "슈발", "시벌", "쇼발", "스벌",
+          "조졌네", "조졌", "븅신", "병", "qudtls", "니거", "죽어", "나쁜말", "씨발", "개새", "ㅅㅂ", "ㅄ", "ㅂㅅ", "ㅅㄲ"];
+
+        function containsBadWords(text) {
+            return badWords.some(word => text.includes(word));
+        }
+
+        function validateForm(event) {
+            const message = document.getElementById("메세지").value;
+
+            if (containsBadWords(message)) {
+                alert("비속어가 포함되어 있습니다. 다시 작성해주세요.");
+                event.preventDefault(); // 폼 전송 막기
+                return false;
+            }
+
+            return true;
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.querySelector("form");
+            form.addEventListener("submit", validateForm);
+        });
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>학교 민원처리기</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <header>
+         <div class="header-title">
+        <img src="진부고.png" alt="학교 로고" class="school-logo">
+        <h1> 진부고등학교 민원처리기</h1>
+        </div>
+        <p class="subtitle">불편사항이나 건의사항을 입력해주세요!</p>
+    </header>
+
+    <main>
+        <form action="https://formsubmit.co/kmj449489@gmail.com" method="POST">
+            <label for="이름">이름:</label>
+            <input type="text" id="이름" name="이름" required>
+
+            <label for="학년">학년/반:</label>
+            <input type="text" id="학년" name="학년" required>
+            <div class="form-group">
+            <label for="카테고리">민원 유형:</label>
+            <select id="카테고리" name="카테고리">
+                <option value="시설 불편">시설 불편</option>
+                <option value="급식 문제">급식 문제</option>
+                <option value="수업 관련">수업 관련</option>
+                <option value="기타">기타</option>
+            </select>
+                </div>
+                <div class="form-group full-width">
+                   <label for="메세지">내용:</label>
+                    <textarea id="메세지" name="메세지" h="1" required></textarea>
+                </div>
+                    <div botton="form-sobmit">
+                        <button type="submit">민원 접수하기</button>
+                     </div>
+        </form>
+    </main>
+
+    <footer>
+        <p class="subtitle">&copy;2025 학교 민원처리 시스템</p>
+    </footer>
+</body>
+</html>
