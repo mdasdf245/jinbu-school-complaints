@@ -62,15 +62,118 @@ textarea {
     align-items: center;
 
 } 
+body {
+font-family: 'Noto Sans KR', sans-serif;
+ margin: 0;
+ padding: 0;
+ background-color: #fff;
+ }
 
-{body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Noto Sans KR', sans-serif;
-    background-color: #f9f9f9;
+header {
+padding: 20px;
+text-align: center;
 }
 
-input, textarea, select {
-    font-family: 'Noto Sans KR', sans-serif;
-}
-}
+.header-title {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .school-logo {
+            width: 80px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        main {
+            padding: 15px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            padding: 10px;
+            font-size: 1rem;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button[type="submit"] {
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #007BFF;
+            color: white;
+            font-size: 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            padding-bottom: 40px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* 피드백 버튼 */
+        #feedbackBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 12px 15px;
+            border-radius: 8px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            z-index: 1001;
+        }
+
+        /* 피드백 모달창 */
+        #feedbackModal {
+            display: none;
+            position: fixed;
+            bottom: 70px;
+            right: 20px;
+            width: 300px;
+            background: white;
+            border: 1px solid #ccc;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            z-index: 1000;
+        }
+    
