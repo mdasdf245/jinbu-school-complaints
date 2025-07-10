@@ -3,8 +3,8 @@
 <head>
     <script>
         // 간단한 비속어 리스트
-        const badWords = ["욕", "사발", "tlqkf", "엄마", "장애", "ㅈㄴ", "존나", "ㅈ같은","ㅈ같네", "시발", "슈발", "시벌", "쇼발", "스벌",
-          "조졌네", "조졌", "븅신", "병", "qudtls", "니거", "죽어", "나쁜말", "씨발", "개새", "ㅅㅂ", "ㅄ", "ㅂㅅ", "ㅅㄲ"];
+        const badWords = ["욕", "사발", "tlqkf", "엄마", "장애", "ㅈㄴ", "존나", "ㅈ같은", "ㅈ같네", "시발", "슈발", "시벌", "쇼발", 
+        "스벌", "조졌네", "조졌", "븅신", "병", "qudtls", "니거", "죽어", "나쁜말", "씨발", "개새", "ㅅㅂ", "ㅄ", "ㅂㅅ", "ㅅㄲ"];
 
         function containsBadWords(text) {
             return badWords.some(word => text.includes(word));
@@ -22,10 +22,33 @@
             return true;
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
+        function updateFormAction() {
+            const category = document.getElementById("카테고리").value; 
             const form = document.querySelector("form");
+
+            let baseURL = "https://formsubmit.co/";
+            let email = "";
+
+            if (category === "시설 불편") {
+                email = "kmj449489@gmail.com"; // ⬅️ 행정실 이메일
+            } else if (category === "급식 문제") {
+                email = "yty8119@gmail.com"; // ⬅️ 급식실 이메일
+            } else if (category === "수업 관련") {
+                email = "jhk449489@gmail.com"; // ⬅️ 담임 선생님 이메일
+            } else {
+                email = "general@example.com"; // ⬅️ 기타 담당자
+            }
+
+            form.action = baseURL + email;
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form"); 
             form.addEventListener("submit", validateForm);
+            document.getElementById("카테고리").addEventListener("change", updateFormAction);
+            updateFormAction(); // 초기 세팅
         });
+    </script>
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -66,6 +89,40 @@
                         <button type="submit">민원 접수하기</button>
                      </div>
         </form>
+       <!-- 피드백 버튼 -->
+            <button id="feedbackBtn" style="position: fixed; bottom: 20px; right: 20px; padding: 10px 15px; border-radius: 8px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">
+                피드백 보내기
+            </button>
+
+            <!-- 피드백 모달창 -->
+            <div id="feedbackModal" style="display: none; position: fixed; bottom: 70px; right: 20px; width: 300px; background: white; border: 1px solid #ccc; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); border-radius: 10px; z-index: 1000;">
+                <form id="feedbackForm" action="https://formsubmit.co/kmj449489@gmail.com" method="POST">
+                    <label for="feedbackContent">피드백 내용:</label>
+                    <textarea id="feedbackContent" name="피드백" rows="4" required style="width: 100%; margin-top: 5px;"></textarea>
+                    <button type="submit" style="margin-top: 10px; width: 100%; background-color: #4CAF50; color: white; border: none; padding: 8px; border-radius: 5px;">제출</button>
+                    
+                </form>
+                <script>
+    // 피드백 버튼 클릭 시 모달창 열기
+    document.getElementById("feedbackBtn").addEventListener("click", function() {
+        document.getElementById("feedbackModal").style.display = "block";
+    });
+
+    // 모달창 외부 클릭 시 닫기
+    window.addEventListener("click", function(event) {
+        const modal = document.getElementById("feedbackModal");
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+
+    // 피드백 폼 제출 후 모달창 닫기
+    document.getElementById("feedbackForm").addEventListener("submit", function() {
+        alert("피드백이 제출되었습니다. 감사합니다!");
+        document.getElementById("feedbackModal").style.display = "none";
+    });
+    </script>
+            </div>
     </main>
 
     <footer>
