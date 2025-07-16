@@ -10,8 +10,8 @@
     </style>
     <script>
         // 간단한 비속어 리스트
-        const badWords = ["욕", "사발", "tlqkf", "엄마", "장애", "ㅈㄴ", "존나", "ㅈ같은", "ㅈ같네", "시발", "슈발", "시벌", "쇼발", 
-        "스벌", "조졌네", "조졌", "븅신", "병", "qudtls", "니거", "죽어", "나쁜말", "씨발", "개새", "ㅅㅂ", "ㅄ", "ㅂㅅ", "ㅅㄲ"];
+        const badWords = [ "사발", "tlqkf", "엄마", "장애", "ㅈㄴ", "존나", "ㅈ같은", "ㅈ같네", "시발", "슈발", "시벌", "쇼발", 
+        "스벌", "조졌네", "조졌", "븅신", "병", "qudtls", "니거", "죽어", "씨발", "개새", "ㅅㅂ", "ㅄ", "ㅂㅅ", "ㅅㄲ"];
 
         function containsBadWords(text) {
             return badWords.some(word => text.includes(word));
@@ -95,26 +95,31 @@
                         <button type="submit">민원 접수하기</button>
                      </div>
         </form>
-       <!-- 피드백 버튼 -->
-            <button id="feedbackBtn" style="position: fixed; bottom: 20px; right: 20px; padding: 10px 15px; border-radius: 8px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">
-                피드백 보내기
-            </button>
+      <!-- 피드백 버튼 -->
+<button id="feedbackBtn" style="position: fixed; bottom: 20px; right: 20px; padding: 10px 15px; border-radius: 8px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">
+    피드백 보내기
+</button>
 
-            <!-- 피드백 모달창 -->
-            <div id="feedbackModal" style="display: none; position: fixed; bottom: 70px; right: 20px; width: 300px; background: white; border: 1px solid #ccc; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); border-radius: 10px; z-index: 1000;">
-                <form id="feedbackForm" action="https://formsubmit.co/kmj449489@gmail.com" method="POST">
-                    <label for="feedbackContent">피드백 내용:</label>
-                    <textarea id="feedbackContent" name="피드백" rows="4" required style="width: 100%; margin-top: 5px;"></textarea>
-                    <button type="submit" style="margin-top: 10px; width: 100%; background-color: #4CAF50; color: white; border: none; padding: 8px; border-radius: 5px;">제출</button>
-                    
-                </form>
-                <script>
+<!-- 피드백 모달창 -->
+<div id="feedbackModal" style="display: none; position: fixed; bottom: 70px; right: 20px; width: 300px; background: white; border: 1px solid #ccc; padding: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); border-radius: 10px; z-index: 1000;">
+    
+    <!-- X 버튼 추가 -->
+    <span id="closeModalBtn" style="position: absolute; top: 5px; right: 10px; cursor: pointer; font-weight: bold;">&times;</span>
+
+    <form id="feedbackForm" action="https://formsubmit.co/kmj449489@gmail.com" method="POST">
+        <label for="feedbackContent">피드백 내용:</label>
+        <textarea id="feedbackContent" name="피드백" rows="4" required style="width: 100%; margin-top: 5px;"></textarea>
+        <button type="submit" style="margin-top: 10px; width: 100%; background-color: #4CAF50; color: white; border: none; padding: 8px; border-radius: 5px;">제출</button>
+    </form>
+</div>
+
+<script>
     // 피드백 버튼 클릭 시 모달창 열기
     document.getElementById("feedbackBtn").addEventListener("click", function() {
         document.getElementById("feedbackModal").style.display = "block";
     });
 
-    // 모달창 외부 클릭 시 닫기
+    // 모달 외부 클릭 시 닫기
     window.addEventListener("click", function(event) {
         const modal = document.getElementById("feedbackModal");
         if (event.target === modal) {
@@ -122,12 +127,17 @@
         }
     });
 
-    // 피드백 폼 제출 후 모달창 닫기
+    // X 버튼 클릭 시 모달창 닫기
+    document.getElementById("closeModalBtn").addEventListener("click", function () {
+        document.getElementById("feedbackModal").style.display = "none";
+    });
+
+    // 피드백 폼 제출 시
     document.getElementById("feedbackForm").addEventListener("submit", function() {
         alert("피드백이 제출되었습니다. 감사합니다!");
         document.getElementById("feedbackModal").style.display = "none";
     });
-    </script>
+</script>
             </div>
     </main>
 
